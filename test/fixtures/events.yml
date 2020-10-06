@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  client_id: 1
+  event_name: MyString
+  event_description: MyText
+  event_image: MyString
+  slug: MyString
+  start_date: 2020-10-06 20:09:16
+  publication_date: 2020-10-06 20:09:16
+  publication_state: MyString
+  tickets_avaible: 1
+  ticket_price: 1
+
+two:
+  id: 1
+  client_id: 1
+  event_name: MyString
+  event_description: MyText
+  event_image: MyString
+  slug: MyString
+  start_date: 2020-10-06 20:09:16
+  publication_date: 2020-10-06 20:09:16
+  publication_state: MyString
+  tickets_avaible: 1
+  ticket_price: 1
