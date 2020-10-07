@@ -1,13 +1,24 @@
 # README
 
-AvispaTech Backend Challenge.
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-Using:
+Things you may want to cover:
 
-Ruby 2.7.1
-Rails 6.0.3.3
+* Ruby version
 
-Database:
+* System dependencies
 
+* Configuration
 
-Dependencies:
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...

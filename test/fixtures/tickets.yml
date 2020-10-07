@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  event_id: 1
+  client_name: MyString
+  client_mail: MyString
+  confirmation_code: MyString
+
+two:
+  id: 1
+  event_id: 1
+  client_name: MyString
+  client_mail: MyString
+  confirmation_code: MyString
