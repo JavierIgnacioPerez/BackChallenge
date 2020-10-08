@@ -60,7 +60,11 @@ class ClientsController < ApplicationController
   end
 
   def mark_as_published
+    @event = Event.find_by(id: params[:event_id], client_id: params[:client_id])
+    @event.update(publication_state: "published")
+    @event.update(publication_date: Time.now.to_datetime)
 
+    render json: @event, status: :ok
   end
 
   def event_name_to_slug(event_name)
