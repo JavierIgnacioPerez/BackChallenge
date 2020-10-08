@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2020_10_06_230922) do
 
   create_table "tickets", force: :cascade do |t|
     t.integer "event_id"
-    t.string "client_name"
-    t.string "client_mail"
+    t.string "buyer_name"
+    t.string "buyer_mail"
     t.string "confirmation_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

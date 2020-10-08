@@ -1,4 +1,4 @@
 class Event < ApplicationRecord
-  has_many :clients
+  belongs_to :client
   has_many :tickets
 end
