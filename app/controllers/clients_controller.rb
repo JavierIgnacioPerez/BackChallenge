@@ -32,26 +32,35 @@ class ClientsController < ApplicationController
   def create_event
     @event = Event.new(event_params)
 
-    @event.save
-    actual_date = Time.now.to_date.to_s
-    partial_slug = event_name_to_slug(@event.event_name)
+    if @event.valid?
+      @event.save
+      actual_date = Time.now.to_date.to_s
+      partial_slug = event_name_to_slug(@event.event_name)
 
-    i = 1
-    while Event.exists?(slug: actual_date + "-" + partial_slug) do
-      aux = "-" + (i - 1).to_s
-      if i > 0
-        puts aux
-        partial_slug.slice!(aux)
+      i = 1
+      while Event.exists?(slug: actual_date + "-" + partial_slug) do
+        aux = "-" + (i - 1).to_s
+        if i > 0
+          puts aux
+          partial_slug.slice!(aux)
+        end
+        puts partial_slug
+        partial_slug = partial_slug + "-" + i .to_s
+        i += 1
       end
-      puts partial_slug
-      partial_slug = partial_slug + "-" + i .to_s
-      i += 1
+
+      @event.update(slug: actual_date + "-" + partial_slug)
+      @event.update(publication_state: "created")
+
+      render json: @event, status: :created
+    else
+      render json: "Event_Creation_Error", status: :bad_request
     end
 
-    @event.update(slug: actual_date + "-" + partial_slug)
-    @event.update(publication_state: "created")
+  end
 
-    render json: @event, status: :created
+  def mark_as_published
+
   end
 
   def event_name_to_slug(event_name)
