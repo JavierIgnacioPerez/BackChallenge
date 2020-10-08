@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :clients
 
   # Specific Routes for UH
-  get '/clients/:client_id/events', to: 'events#getEventsByClient'
+  get '/clients/:client_id/events', to: 'clients#get_events_by_client_id'
+  post '/client/:client_id/events', to: 'clients#create_event'
 
 end
