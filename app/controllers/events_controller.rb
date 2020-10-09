@@ -31,6 +31,12 @@ class EventsController < ApplicationController
 
   end
 
+  def get_events
+    @published_events = Event.where("publication_date < ?", Time.now.to_datetime + 7.days)
+
+    render json: @published_events , status: :ok
+  end
+
   def buy_ticket
     @partial_ticket = Ticket.new(buyer_params)
     @event = Event.find_by(id: @partial_ticket.event_id)
