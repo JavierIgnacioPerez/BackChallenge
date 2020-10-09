@@ -26,7 +26,8 @@ class EventsController < ApplicationController
     @event = Event.where(publication_state: "published")
     @requested_event = @event.find_by(id: params[:event_id])
 
-    render json: @requested_event, status: :ok
+    render json: @requested_event.to_json(only: [:event_name, :event_description, :start_date, :tickets_avaible, :ticket_price, :event_image])
+
   end
 
   def event_params

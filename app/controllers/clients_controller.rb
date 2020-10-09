@@ -24,9 +24,9 @@ class ClientsController < ApplicationController
   end
 
   def get_events_by_client_id
-    @events = Event.all.where(client_id: params[:client_id]).map { |event| [event.id,event.event_name, event.start_date, event.tickets_avaible , event.ticket_price]}
+    @events = Event.all.where(client_id: params[:client_id])
 
-    render json: @events, status: :ok
+    render json: @events.to_json(only: [:event_id, :event_name, :start_date ,:tickets_avaible, :ticket_price])
   end
 
   def create_event
