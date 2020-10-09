@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  protect_from_forgery with: :null_session
 
   def index
     @events = Event.all
@@ -30,8 +31,32 @@ class EventsController < ApplicationController
 
   end
 
+  def buy_ticket
+    @partial_ticket = Ticket.new(buyer_params)
+    @event = Event.find_by(id: @partial_ticket.event_id)
+
+    if @event.publication_state == "published"
+      @partial_ticket.update(confirmation_code: Random.rand(100000..999999).to_s)
+      if @partial_ticket.valid?
+        @partial_ticket.save
+        @event.update(tickets_avaible: @event.tickets_avaible - 1)
+        render json: @partial_ticket, status: :created
+      else
+        render plain: "Código duplicado", status:401
+      end
+    else
+      render plain: "Evento no publicado", status:401
+    end
+
+
+  end
+
   def event_params
     params.require(:event).permit(:client_id, :event_name, :event_description, :event_image, :slug, :start_date, :publication_date, :publication_state, :tickets_avaible, :ticket_price)
+  end
+
+  def buyer_params
+    params.permit(:event_id, :buyer_name, :buyer_mail)
   end
 
 end
